@@ -1,0 +1,3 @@
+# LibraryTrainingApp2
+ST10117268 PROG7312 POE TASK 2
+[ST10117268.README.POE.TASK.2.pdf](https://github.com/KGR34/LibraryTrainingApp2/files/9861980/ST10117268.README.POE.TASK.2.pdf)
