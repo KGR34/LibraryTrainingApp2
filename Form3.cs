@@ -309,6 +309,7 @@ namespace LibraryTrainingApp2
                 internalCount--;
                 MessageBox.Show("Congratulations you have completed the task!" + "\n" + "Click START to play again");
             }
+         
             
         }
     }

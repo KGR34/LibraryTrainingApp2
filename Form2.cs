@@ -150,6 +150,18 @@ namespace LibraryTrainingApp2
         {
             try 
             {
+                if(lsbBookReplace.Items.Count == 0)
+                {
+                    MessageBox.Show("error");
+
+                }
+                if (lsbUserOrder.Items.Count == 0)
+                {
+                    MessageBox.Show("error");
+
+                }
+
+
                 SelectedItemText = lsbBookReplace.SelectedItem.ToString();
                 SelectedIndex = lsbUserOrder.SelectedIndex;
                 lsbUserOrder.Items.Add(SelectedItemText);
