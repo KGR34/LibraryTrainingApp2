@@ -19,7 +19,45 @@ namespace LibraryTrainingApp2
             InitializeComponent();
         }
 
-        class archary
+
+        public class Node
+        {
+            public string key;
+            public Node left, right;
+
+            public Node(string item)
+            {
+                key = item;
+                left = right = null;
+            }
+        }
+
+        public class BinaryTree
+        {
+
+            // Root of Binary Tree
+            public Node root;
+
+            // Constructors
+            public BinaryTree(string key)
+            {
+                root = new Node(key);
+            }
+
+            public BinaryTree()
+            {
+                root = null;
+            }
+
+        }
+
+
+
+
+
+
+
+            class archary
         {
             string a;
             string b;
@@ -192,6 +230,48 @@ namespace LibraryTrainingApp2
 
 
             lsbDewey.Items.Add(desclv1);
+
+
+
+            BinaryTree tree = new BinaryTree();
+
+            // Create root
+            tree.root = new Node("level 1");
+
+            /* Following is the tree after above statement
+
+                 1
+                / \
+             null null     */
+            tree.root.left = new Node("level 2 left");
+            tree.root.right = new Node("level 2 right");
+
+            /* 2 and 3 become left and right children of 1
+                    1
+                 /     \
+               2        3
+             /  \     /   \
+           null null null null */
+            tree.root.left.left = new Node("level 3 left");
+
+            /* 4 becomes left child of 2
+                    1
+                 /     \
+               2        3
+             /  \     /   \
+             4 null null null
+            / \
+         null null
+            */
+
+
+
+
+
+
+
+
+            //BinarySearchTree.Node test = new BinarySearchTree.Node();
 
             //var output = File.ReadLines(@"..\DEWEY.txt").Where(line => line.Split(',')[1] == question).FirstOrDefault();
 
