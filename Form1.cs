@@ -23,7 +23,9 @@ namespace LibraryTrainingApp2
             }
             else if (cmbGameSelect.SelectedIndex == 2)
             {
-                MessageBox.Show("This Game is currently locked");
+                this.Hide();
+                Form4 f4 = new Form4();
+                f4.ShowDialog(); ;
             }
             else
             {
