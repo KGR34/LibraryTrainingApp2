@@ -75,7 +75,6 @@ namespace LibraryTrainingApp2
 
         //NODES NEED TO BE CREATED HERE SO THAT THEY ARE ACCESSABLE BY ALL BUTTONS
 
-
         private void btnStart_Click(object sender, EventArgs e)
         {
             List<string> listNum = new List<string>();
@@ -236,8 +235,8 @@ namespace LibraryTrainingApp2
             BinaryTree tree = new BinaryTree();
 
             // Create root
-            tree.root = new Node("level 1");
-
+            tree.root = new Node("level 1 node");
+            
             /* Following is the tree after above statement
 
                  1
@@ -265,9 +264,10 @@ namespace LibraryTrainingApp2
             */
 
 
+            
 
-
-
+            // THIS WORKS
+            MessageBox.Show("level 1 is "+tree.root.key);
 
 
 
