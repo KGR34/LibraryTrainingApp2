@@ -19,7 +19,7 @@ namespace LibraryTrainingApp2
             InitializeComponent();
         }
 
-
+        //NODES TO BE USED IN BINARY TREE
         public class Node
         {
             public string key;
@@ -32,13 +32,14 @@ namespace LibraryTrainingApp2
             }
         }
 
+        //BINARY TREE OF NODES
         public class BinaryTree
         {
 
-            // Root of Binary Tree
+            //ROOT OF BINARY TREE
             public Node root;
-
-            // Constructors
+            
+            //CONSTRUCTORS
             public BinaryTree(string key)
             {
                 root = new Node(key);
@@ -51,50 +52,41 @@ namespace LibraryTrainingApp2
 
         }
 
+        //STRINGS TO STORE ITEMS SO THAT THEY CAN BE ACCESSED FOR CHECKING UNDER THE SUBMIT BUTTONS
+        string item1;
+        string item2;
+        string item3;
 
+        //INT COUNT FOR GAMIFICATION FEATURE
+        int count = 0;
 
+        //LIST OF LEVEL 1, 2 & 3 ITEMS ACCESSIBLE FROM ANY CLASS FOR CHECKING
+        List<string> lsb1 = new List<string>();
+        List<string> lsb2 = new List<string>();
+        List<string> lsb3 = new List<string>();
 
-
-
-
-            class archary
-        {
-            string a;
-            string b;
-            public archary()
-            {
-
-            }
-
-            public archary(string a, string b)
-            {
-                this.a = a;
-                this.b = b;
-            }
-        }
-
-        //NODES NEED TO BE CREATED HERE SO THAT THEY ARE ACCESSABLE BY ALL BUTTONS
 
         private void btnStart_Click(object sender, EventArgs e)
-        {
+        {   
+            //LISTS OF CALL NUMBERS AND DESCRIPTIONS
             List<string> listNum = new List<string>();
             List<string> listCall = new List<string>();
-            List<archary> ar = new List<archary>();
             
+            //LISTS OF ALL LEVEL 1, 2 & 3 ITEMS
             List<string> lev1 = new List<string>();
             List<string> lev2 = new List<string>();
             List<string> lev3 = new List<string>();
 
+            //LISTS OF DESCRIPTIONS
             List<string> desclv3 = new List<string>();
             List<string> desclv1 = new List<string>();
 
             List<string> callDesc = new List<string>();
 
+            //CREATE INSTANCE OF BINARY TREE
+            BinaryTree tree = new BinaryTree();
 
-
-            //THE CODE BELOW ALONG WITH THE LISTS NEED TO BE ADDED UNDER EVERY BUTTON
-            //THIS IS SO THAT THE APPROPRIATE LEVEL OF ITEMS CAN BE POPULATED WHEN THE USER GETS THE ANSWER CORRECT
-
+            //READING FROM THE TEXT FILE IN ORDER TO POPULATE LISTS AND BINARY TREE NODES
             using (StreamReader r = new StreamReader(@"..\DEWEY.txt"))
             {
                 string line;
@@ -105,6 +97,7 @@ namespace LibraryTrainingApp2
                 }
             }
             
+            
             foreach(string line in listNum)
             {
                 string stringBeforeChar = line.Substring(0, line.IndexOf("-"));
@@ -114,9 +107,6 @@ namespace LibraryTrainingApp2
 
                 callDesc.Add(wholeLine);
 
-
-                archary archary = new archary(stringBeforeChar, stringAfterChar);
-                ar.Add(archary);
 
                 string digit1 = stringBeforeChar.Substring(0, 1);
 
@@ -131,26 +121,24 @@ namespace LibraryTrainingApp2
                 {
                     lev1.Add(stringBeforeChar);
                     desclv1.Add(stringAfterChar2);
-                    //MessageBox.Show("level 1 - " + stringBeforeChar);
+                    lsb1.Add(stringAfterChar);
                 }
                 //Level 2
                 if (digit3 == "0" && digit2 != "0")
                 {
                     lev2.Add(stringBeforeChar);
-                    //MessageBox.Show("level 2 - " + stringBeforeChar);
+                    lsb2.Add(stringAfterChar);
                 }
                 //Level 3
                 if (digit3 != "0")
-                {
-                    
+                {                    
                     lev3.Add(stringBeforeChar);
                     desclv3.Add(stringAfterChar);
+                    lsb3.Add(stringAfterChar);
                 }
 
-                //you can find a random level 3 already. you then know what its level 2 is by the 1st and 2nd digit
-                //WATCH THE VIDEO
-
-
+                //MAKE SUBMISSION BUTTON VISIBLE
+                panel1.Visible = false;
             }
             
             
@@ -161,18 +149,10 @@ namespace LibraryTrainingApp2
             //THIS IS USED TO GIVE THE USER THEIR QUESTION TO WORK TOWARDS FINDING
             string question = desclv3[rnd.Next(90)];
 
-            label1.Text = question;
+            //SETS THE QUESTION FOR THE USER TO FIND THE ANSWER
+            label1.Text = "Your question is : " + question;
 
 
-            //ADDS 3 RANDOM LEVEL 1'S TO THE LIST BOX
-            //THE 4TH NEEDS TO BE THE CORRECT LEVEL 1
-            //NEED TO DO THIS FOR ALL LEVELS UNDER THE APPROPRIATE BUTTONS
-            for (int i = 0; i < 3; i++)
-            {
-                lsbDewey.Items.Add(desclv1[rnd.Next(10)]);
-            }
-            //lsbDewey.Items.Add()
-            
 
             //GOES THROUGH EACH LINE OF THE TEXT FILE THAT IS STORED IN THE LIST
             foreach(string full in callDesc)
@@ -205,89 +185,46 @@ namespace LibraryTrainingApp2
                         if (matchDigit1 == searchDigit1 && matchDigit2 == "0" && matchDigit3 == "0")
                         {
                             MessageBox.Show("Level 1 is - " + search);
+                            tree.root = new Node(search);
                         }
 
                         //THIS FINDS THE LEVEL 2
                         if (matchDigit1 == searchDigit1 && matchDigit2 == searchDigit2 && matchDigit3 == "0")
                         {
                             MessageBox.Show("Level 2 is - " + search);
+                            tree.root.left = new Node(search);
                         }
                     }
                     
                     
                     //THIS IS THE LEVEL 3
                     MessageBox.Show("Level 3 is - " + fullLine);
+                    tree.root.left.left = new Node(fullLine);
                 }
 
             }
-            //NOW ADD TO NODES
-
-            
-
 
             string lvl1ans = lev1.ToString() + desclv1.ToString();
 
-
-            lsbDewey.Items.Add(desclv1);
-
-
-
-            BinaryTree tree = new BinaryTree();
-
-            // Create root
-            tree.root = new Node("level 1 node");
-            
-            /* Following is the tree after above statement
-
-                 1
-                / \
-             null null     */
-            tree.root.left = new Node("level 2 left");
-            tree.root.right = new Node("level 2 right");
-
-            /* 2 and 3 become left and right children of 1
-                    1
-                 /     \
-               2        3
-             /  \     /   \
-           null null null null */
-            tree.root.left.left = new Node("level 3 left");
-
-            /* 4 becomes left child of 2
-                    1
-                 /     \
-               2        3
-             /  \     /   \
-             4 null null null
-            / \
-         null null
-            */
-
-
+            //ADDS ITEMS TO THE BINARY TREE
+            item1 = tree.root.key;
+            item2 = tree.root.left.key;
+            item3 = tree.root.left.left.key;
             
 
             // THIS WORKS
-            MessageBox.Show("level 1 is "+tree.root.key);
+            MessageBox.Show("level 1 is " + item1);
+            MessageBox.Show("level 2 is " + item2);
+            MessageBox.Show("level 3 is " + item3);
 
-
-
-            //BinarySearchTree.Node test = new BinarySearchTree.Node();
-
-            //var output = File.ReadLines(@"..\DEWEY.txt").Where(line => line.Split(',')[1] == question).FirstOrDefault();
-
-            //MessageBox.Show("working - " + output);
-
-            //MessageBox.Show("" + fullLine);
-            //MessageBox.Show("" + fulldigit1);
-            //MessageBox.Show("" + fulldigit2);
-            //MessageBox.Show("" + fulldigit3);
-
-
-            //lsbDewey.Items.Add(lev2[rnd.Next(90)]);
-
-            //lsbDewey.Items.Add(lev3[rnd.Next(90)]);
-
-            //lsbDewey.Items.Add(list[rnd.Next(198)]);
+            //ADDS 3 RANDOM LEVEL 1'S TO THE LIST BOX
+            //ADDS THE CORRECT ITEM FROM THE NODE TO THE LIST BOX
+            for (int i = 0; i < 3; i++)
+            {
+                lsbDewey.Items.Add(lsb1[rnd.Next(10)]);
+            }
+            string lsbItem1 = item1.Substring(4);
+            lsbDewey.Items.Add(lsbItem1);
         }
 
 
@@ -295,27 +232,90 @@ namespace LibraryTrainingApp2
 
         private void btnSub1_Click(object sender, EventArgs e)
         {
-            HashSet<string> strings = new HashSet<string>(File.ReadAllLines(@"..\DEWEY.txt"));
+            string check1 = lsbDewey.GetItemText(lsbDewey.SelectedItem);
+            string checkNode1 = item1.Substring(4);
+            
+            Random rnd = new Random();
 
-
-            if (strings.Contains("00"))
+            if (check1 == checkNode1)
             {
-                MessageBox.Show("Found");
+                MessageBox.Show("YOU ARE CORRECT!");
+                lsbDewey.Items.Clear();
+                
+                for (int i = 0; i < 3; i++)
+                {
+                    lsbDewey.Items.Add(lsb2[rnd.Next(10)]);
+                }
+                string lsbItem2 = item2.Substring(4);
+                lsbDewey.Items.Add(lsbItem2);
+                panel1.Visible = true;
+                panel2.Visible = false;
             }
             else
             {
-                MessageBox.Show("Not Found");
+                MessageBox.Show("You are incorrect! Please click 'start' to try again.");
+                lsbDewey.Items.Clear();
+                panel1.Visible = true;
+                panel2.Visible = true;
+                panel3.Visible = true;
             }
         }
 
         private void btnSub2_Click(object sender, EventArgs e)
         {
+            string check2 = lsbDewey.GetItemText(lsbDewey.SelectedItem);
+            string checkNode2 = item2.Substring(4);
 
+            Random rnd = new Random();
+
+            if (check2 == checkNode2)
+            {   
+                MessageBox.Show("YOU ARE CORRECT!");
+                lsbDewey.Items.Clear();
+
+                for (int i = 0; i < 3; i++)
+                {
+                    lsbDewey.Items.Add(lsb3[rnd.Next(10)]);
+                }
+                string lsbItem3 = item3.Substring(4);
+                lsbDewey.Items.Add(lsbItem3);
+                panel2.Visible = true;
+                panel3.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("You are incorrect! Please click 'start' to try again.");
+                lsbDewey.Items.Clear();
+                panel1.Visible = true;
+                panel2.Visible = true;
+                panel3.Visible = true;
+            }
         }
 
         private void btnSub3_Click(object sender, EventArgs e)
         {
+            string check3 = lsbDewey.GetItemText(lsbDewey.SelectedItem);
+            string checkNode3 = item3.Substring(4);
 
+            if (check3 == checkNode3)
+            {
+                count++;
+                count++;
+                count++;
+                lsbDewey.Items.Clear();
+                MessageBox.Show("Game won! Your score is : " + count);
+                panel3.Visible = true;
+            }
+            else
+            {   
+                count--;
+                count--;
+                MessageBox.Show("You are incorrect! Please click 'start' to try again.");
+                lsbDewey.Items.Clear();
+                panel1.Visible = true;
+                panel2.Visible = true;
+                panel3.Visible = true;
+            }
         }
     }
 }

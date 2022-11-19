@@ -47,7 +47,6 @@ namespace LibraryTrainingApp2
             //Try catch for exception handling
             try
             {
-
                 //Adding items to the dictionary
                 Descriptions.Add("315.22", "JJ Hale: The Biography");
                 Descriptions.Add("218.25", "Harry Potter and the Goblet of Fire");
