@@ -44,6 +44,8 @@ namespace LibraryTrainingApp2
 
         private void btnStartIdent_Click(object sender, EventArgs e)
         {
+            lsbCol1.Items.Clear();
+            lsbCol2.Items.Clear();
             //Try catch for exception handling
             try
             {

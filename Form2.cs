@@ -95,9 +95,7 @@ namespace LibraryTrainingApp2
         private void btnSubmitBookReplace_Click(object sender, EventArgs e)
         {
             //output is list of random items shown in 1st listbox
-
             //final is list of user ordered items taken fron 2nd listbox
-
             //sorts the items in acending order
             output.Sort();
 
@@ -108,20 +106,14 @@ namespace LibraryTrainingApp2
                 final.Add(q);
             }
             
-
-
             //joins the items in the lists into one string
-            string OUT = string.Join(",", output);
-            string IN = string.Join(",", final);
-
-            //string three = string.Join(",", sort_list2);
-
-
+            string OUTPUT = string.Join(",", output);
+            string INPUT = string.Join(",", final);
 
             //Points Gamification feature. Adds 5 points if the users order is correct and deducts 1 point if they are incorrect.
             //https://www.codeproject.com/Questions/1230460/Increment-number-per-button-click-form-by-form-Csh
 
-            if (OUT == IN)
+            if (OUTPUT == INPUT)
             {
                 count++;
                 count++;
