@@ -37,20 +37,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lsbDewey
             // 
             this.lsbDewey.FormattingEnabled = true;
             this.lsbDewey.ItemHeight = 15;
-            this.lsbDewey.Location = new System.Drawing.Point(211, 34);
+            this.lsbDewey.Location = new System.Drawing.Point(221, 72);
             this.lsbDewey.Name = "lsbDewey";
-            this.lsbDewey.Size = new System.Drawing.Size(345, 349);
+            this.lsbDewey.Size = new System.Drawing.Size(345, 319);
             this.lsbDewey.TabIndex = 0;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(40, 320);
+            this.btnStart.Location = new System.Drawing.Point(49, 320);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(112, 58);
             this.btnStart.TabIndex = 1;
@@ -60,7 +61,7 @@
             // 
             // btnSub1
             // 
-            this.btnSub1.Location = new System.Drawing.Point(40, 206);
+            this.btnSub1.Location = new System.Drawing.Point(49, 129);
             this.btnSub1.Name = "btnSub1";
             this.btnSub1.Size = new System.Drawing.Size(112, 23);
             this.btnSub1.TabIndex = 2;
@@ -70,7 +71,7 @@
             // 
             // btnSub2
             // 
-            this.btnSub2.Location = new System.Drawing.Point(40, 235);
+            this.btnSub2.Location = new System.Drawing.Point(49, 158);
             this.btnSub2.Name = "btnSub2";
             this.btnSub2.Size = new System.Drawing.Size(112, 23);
             this.btnSub2.TabIndex = 3;
@@ -80,7 +81,7 @@
             // 
             // btnSub3
             // 
-            this.btnSub3.Location = new System.Drawing.Point(40, 264);
+            this.btnSub3.Location = new System.Drawing.Point(49, 187);
             this.btnSub3.Name = "btnSub3";
             this.btnSub3.Size = new System.Drawing.Size(112, 23);
             this.btnSub3.TabIndex = 4;
@@ -91,38 +92,49 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(269, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(22, 199);
+            this.panel1.Location = new System.Drawing.Point(31, 122);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(153, 30);
             this.panel1.TabIndex = 6;
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(22, 235);
+            this.panel2.Location = new System.Drawing.Point(31, 158);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(153, 24);
             this.panel2.TabIndex = 7;
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(22, 265);
+            this.panel3.Location = new System.Drawing.Point(31, 188);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(153, 28);
             this.panel3.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(2, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(228, 60);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "      Click \"START\" to begin the game.\r\nselect a description that you believe to " +
+    "be \r\nthe level 1, 2 then 3 for the given question\r\n        then click the \"submi" +
+    "t\" button.";
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 413);
+            this.ClientSize = new System.Drawing.Size(593, 413);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -134,6 +146,7 @@
             this.Controls.Add(this.lsbDewey);
             this.Name = "Form4";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,5 +163,6 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
+        private Label label2;
     }
 }

@@ -38,7 +38,7 @@ namespace LibraryTrainingApp2
 
             //ROOT OF BINARY TREE
             public Node root;
-            
+
             //CONSTRUCTORS
             public BinaryTree(string key)
             {
@@ -53,9 +53,9 @@ namespace LibraryTrainingApp2
         }
 
         //STRINGS TO STORE ITEMS SO THAT THEY CAN BE ACCESSED FOR CHECKING UNDER THE SUBMIT BUTTONS
-        string item1;
-        string item2;
-        string item3;
+        string item1 { get; set; }
+        string item2 { get; set; }
+        string item3 { get; set; }
 
         //INT COUNT FOR GAMIFICATION FEATURE
         int count = 0;
@@ -67,11 +67,14 @@ namespace LibraryTrainingApp2
 
 
         private void btnStart_Click(object sender, EventArgs e)
-        {   
+        {
+            lsbDewey.Items.Clear();
+            label1.Text = "";
+
             //LISTS OF CALL NUMBERS AND DESCRIPTIONS
             List<string> listNum = new List<string>();
             List<string> listCall = new List<string>();
-            
+
             //LISTS OF ALL LEVEL 1, 2 & 3 ITEMS
             List<string> lev1 = new List<string>();
             List<string> lev2 = new List<string>();
@@ -96,9 +99,9 @@ namespace LibraryTrainingApp2
                     listCall.Add(line);
                 }
             }
-            
-            
-            foreach(string line in listNum)
+
+
+            foreach (string line in listNum)
             {
                 string stringBeforeChar = line.Substring(0, line.IndexOf("-"));
                 string stringAfterChar = line.Substring(line.IndexOf("-") + 1);
@@ -107,15 +110,15 @@ namespace LibraryTrainingApp2
 
                 callDesc.Add(wholeLine);
 
-
+                //GETS FIRST, SECOND AND THIRD DIGIT OF CALL NUMBER
                 string digit1 = stringBeforeChar.Substring(0, 1);
 
                 string digit2 = stringBeforeChar.Substring(1, 1);
 
                 string digit3 = stringBeforeChar.Substring(2, 1);
 
-                
 
+                //IF STATEMENTS TO CHECK IF A DESCRIPTION BELONGS TO LEVEL 1, 2 OR 3
                 //Level 1
                 if (digit2 == "0" && digit3 == "0")
                 {
@@ -131,7 +134,7 @@ namespace LibraryTrainingApp2
                 }
                 //Level 3
                 if (digit3 != "0")
-                {                    
+                {
                     lev3.Add(stringBeforeChar);
                     desclv3.Add(stringAfterChar);
                     lsb3.Add(stringAfterChar);
@@ -140,8 +143,8 @@ namespace LibraryTrainingApp2
                 //MAKE SUBMISSION BUTTON VISIBLE
                 panel1.Visible = false;
             }
-            
-            
+
+
             //CREATES A RANDOOM
             Random rnd = new Random();
 
@@ -155,8 +158,8 @@ namespace LibraryTrainingApp2
 
 
             //GOES THROUGH EACH LINE OF THE TEXT FILE THAT IS STORED IN THE LIST
-            foreach(string full in callDesc)
-            {   
+            foreach (string full in callDesc)
+            {
                 //GETS THE ITEM IN THE LIST TO A STRING
                 string fullLine = full.Substring(0);
 
@@ -171,7 +174,7 @@ namespace LibraryTrainingApp2
                 if (fullLine.Contains(question))
                 {
                     //THEN SEARCHES EACH STRING IN THE LIST TO FIND THE LEVEL 2 AND LEVEL 1 PARENTS OF THE RANDOM LEVEL 3 QUESTION
-                    foreach(string search in callDesc)
+                    foreach (string search in callDesc)
                     {
                         string searchDigit1 = full.Substring(0, 1);
                         string searchDigit2 = full.Substring(1, 1);
@@ -184,21 +187,21 @@ namespace LibraryTrainingApp2
                         //THIS FINDS THE LEVEL 1
                         if (matchDigit1 == searchDigit1 && matchDigit2 == "0" && matchDigit3 == "0")
                         {
-                            MessageBox.Show("Level 1 is - " + search);
+                            //MessageBox.Show("Level 1 is - " + search);
                             tree.root = new Node(search);
                         }
 
                         //THIS FINDS THE LEVEL 2
                         if (matchDigit1 == searchDigit1 && matchDigit2 == searchDigit2 && matchDigit3 == "0")
                         {
-                            MessageBox.Show("Level 2 is - " + search);
+                            //MessageBox.Show("Level 2 is - " + search);
                             tree.root.left = new Node(search);
                         }
                     }
-                    
-                    
+
+
                     //THIS IS THE LEVEL 3
-                    MessageBox.Show("Level 3 is - " + fullLine);
+                    //MessageBox.Show("Level 3 is - " + fullLine);
                     tree.root.left.left = new Node(fullLine);
                 }
 
@@ -210,12 +213,16 @@ namespace LibraryTrainingApp2
             item1 = tree.root.key;
             item2 = tree.root.left.key;
             item3 = tree.root.left.left.key;
-            
+
 
             // THIS WORKS
-            MessageBox.Show("level 1 is " + item1);
-            MessageBox.Show("level 2 is " + item2);
-            MessageBox.Show("level 3 is " + item3);
+            //MessageBox.Show("level 1 is " + item1);
+            //MessageBox.Show("level 2 is " + item2);
+            //MessageBox.Show("level 3 is " + item3);
+
+
+            string lsbItem1 = item1.Substring(4);
+            lsbDewey.Items.Add(lsbItem1);
 
             //ADDS 3 RANDOM LEVEL 1'S TO THE LIST BOX
             //ADDS THE CORRECT ITEM FROM THE NODE TO THE LIST BOX
@@ -223,8 +230,7 @@ namespace LibraryTrainingApp2
             {
                 lsbDewey.Items.Add(lsb1[rnd.Next(10)]);
             }
-            string lsbItem1 = item1.Substring(4);
-            lsbDewey.Items.Add(lsbItem1);
+            
         }
 
 
@@ -234,14 +240,14 @@ namespace LibraryTrainingApp2
         {
             string check1 = lsbDewey.GetItemText(lsbDewey.SelectedItem);
             string checkNode1 = item1.Substring(4);
-            
+
             Random rnd = new Random();
 
             if (check1 == checkNode1)
             {
                 MessageBox.Show("YOU ARE CORRECT!");
                 lsbDewey.Items.Clear();
-                
+
                 for (int i = 0; i < 3; i++)
                 {
                     lsbDewey.Items.Add(lsb2[rnd.Next(10)]);
@@ -269,16 +275,18 @@ namespace LibraryTrainingApp2
             Random rnd = new Random();
 
             if (check2 == checkNode2)
-            {   
+            {
                 MessageBox.Show("YOU ARE CORRECT!");
                 lsbDewey.Items.Clear();
+
+                string lsbItem3 = item3.Substring(4);
+                lsbDewey.Items.Add(lsbItem3);
 
                 for (int i = 0; i < 3; i++)
                 {
                     lsbDewey.Items.Add(lsb3[rnd.Next(10)]);
                 }
-                string lsbItem3 = item3.Substring(4);
-                lsbDewey.Items.Add(lsbItem3);
+                
                 panel2.Visible = true;
                 panel3.Visible = false;
             }
@@ -307,7 +315,7 @@ namespace LibraryTrainingApp2
                 panel3.Visible = true;
             }
             else
-            {   
+            {
                 count--;
                 count--;
                 MessageBox.Show("You are incorrect! Please click 'start' to try again.");
@@ -316,6 +324,11 @@ namespace LibraryTrainingApp2
                 panel2.Visible = true;
                 panel3.Visible = true;
             }
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
