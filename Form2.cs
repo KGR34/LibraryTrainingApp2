@@ -111,8 +111,8 @@ namespace LibraryTrainingApp2
 
 
             //joins the items in the lists into one string
-            string one = string.Join(",", output);
-            string two = string.Join(",", final);
+            string OUT = string.Join(",", output);
+            string IN = string.Join(",", final);
 
             //string three = string.Join(",", sort_list2);
 
@@ -121,7 +121,7 @@ namespace LibraryTrainingApp2
             //Points Gamification feature. Adds 5 points if the users order is correct and deducts 1 point if they are incorrect.
             //https://www.codeproject.com/Questions/1230460/Increment-number-per-button-click-form-by-form-Csh
 
-            if (one == two)
+            if (OUT == IN)
             {
                 count++;
                 count++;
