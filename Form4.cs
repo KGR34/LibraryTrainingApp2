@@ -68,6 +68,11 @@ namespace LibraryTrainingApp2
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("I have removed the Call numbers from the list " +
+                "\nas it would defeat the purpose of learning. " +
+                "\nIf the user can see the call number then the only real difficulty " +
+                "\ncomes from selecting the correct level 1 item.");
+            
             lsbDewey.Items.Clear();
             label1.Text = "";
 
